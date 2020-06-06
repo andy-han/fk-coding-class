@@ -59,14 +59,14 @@
         <div style="display: flex; flex-flow: row wrap">
             <div style="width: 70%">
                 <h3>Verse</h3>
-                <input type="text" id="verse-content" name="verse-content"
-                       placeholder="Ex. Set your minds on things that are above, not on things that are no earth.">
+                <input type="text" id="verse-content-form" name="verse-content"
+                       placeholder="Ex. Set your minds on things that are above, not on things that are on earth.">
             </div>
             <div style="width: 5%">
             </div>
             <div style="width: 25%">
                 <h3>Reference</h3>
-                <input type="text" id="verse-ref" name="verse-ref" placeholder="Colossians 3:2"><br><br>
+                <input type="text" id="verse-ref-form" name="verse-ref" placeholder="Colossians 3:2"><br><br>
             </div>
         </div>
         <div style="text-align: center; margin-bottom: 60px;">
@@ -104,24 +104,9 @@
             </div>
         </div>
 
+        <!-- C-4.1 -->
         <!-- Verses -->
-        <div>
-            <div style="display: flex;">
-                <div class="Rtable">
-                    <div id="verse-content-0" class="Rtable-cell first-col cell-background"
-                         onclick="toggleVerseContentVisibility(id)">
-                        <p id="0-content" style="margin: 0">Sample Verse Content</p>
-                    </div>
-                    <div id="verse-reference-0" class="Rtable-cell second-col cell-background"
-                         onclick="toggleVerseReferenceVisibility(id)">
-                        <p id="0-reference" style="margin: 0">Sample Verse Reference</p>
-                    </div>
-                    <div id="icons-0" class="Rtable-cell third-col">
-                        <span id="0-show" class="icon fa-eye show" onclick="show(id)"></span>
-                        <span id="0-hide" class="icon fa-eye-slash hide" onclick="hide(id)"></span>
-                    </div>
-                </div>
-            </div>
+        <div class="verses">
         </div>
     </div>
 </section>
@@ -172,9 +157,29 @@
     var numberOfVerses = 0;
 
     function addVerse() {
-
+        // C-4.2 Dynamically add verses html
         numberOfVerses = numberOfVerses + 1;
-
+        let verseContentText = $("#verse-ref-form").val()
+        let verseReferenceText = $("#verse-content-form").val()
+        $(".verses").append(
+            `<div style="display: flex;">
+                <div class="verses-table">
+                    <!-- H-4.1 when clicking on the verse content, the visibility is toggled -->
+                    <div id="verse-content-${numberOfVerses}" class="verses-table-cell first-col cell-background">
+                        <p id="${numberOfVerses}-content" style="margin: 0">${verseContentText}</p>
+                    </div>
+                    <!-- H-4.2 when clicking on the verse reference, the visibility is toggled -->
+                    <div id="verse-reference-${numberOfVerses}" class="verses-table-cell second-col cell-background">
+                        <p id="${numberOfVerses}-reference" style="margin: 0">${verseReferenceText}</p>
+                    </div>
+                    <div id="icons-${numberOfVerses}" class="verses-table-cell third-col">
+                        <!-- C-4.3 onClick for icons are set up -->
+                        <span id="${numberOfVerses}-show" class="icon fa-eye show" onclick="showVerseContentAndReferenceWhenButtonClicked(id)"></span>
+                        <span id="${numberOfVerses}-hide" class="icon fa-eye-slash hide" onclick="hideVerseContentAndReferenceWhenButtonClicked(id)"></span>
+                    </div>
+                </div>
+            </div>`
+        );
         printTheNumberOfVerses();
         printOddOrEven();
     }
@@ -197,8 +202,13 @@
     // when called, it prints ("verse and reference {number} should be shown")
 
     function showVerseContentAndReferenceWhenButtonClicked(showButtonFullId) {
-        let verseNumber = showButtonFullId.substring(5)
-        console.log("please show content and reference " + verseNumber)
+        let verseNumber = showButtonFullId.split("-show")[0]
+        // C.4-4 change the style instead of just logging
+        // console.log("please show content and reference " + verseNumber)
+        let contentElement = document.getElementById(`${verseNumber}-content`)
+        let referenceElement = document.getElementById(`${verseNumber}-reference`)
+        contentElement.style.visibility = "visible";
+        referenceElement.style.visibility = "visible";
     }
 
 
@@ -208,8 +218,13 @@
     // when called, it prints ("verse and reference {number} should be hidden")
 
     function hideVerseContentAndReferenceWhenButtonClicked(hideButtonFullId) {
-        let verseNumber = hideButtonFullId.substring(5)
-        console.log("please hide content and reference " + verseNumber)
+        let verseNumber = hideButtonFullId.split("-hide")[0]
+        // C.4-5 change the style instead of just logging
+        // console.log("please hide content and reference " + verseNumber)
+        let contentElement = document.getElementById(`${verseNumber}-content`)
+        let referenceElement = document.getElementById(`${verseNumber}-reference`)
+        contentElement.style.visibility = "hidden";
+        referenceElement.style.visibility = "hidden";
     }
 
     // H.3-3: write a function called `toggleVerseContentVisibility` that does the following
@@ -219,6 +234,7 @@
     // when called, it prints ("make content {number} {newVisibility}") where {newVisibility} is the opposite of @Param 2
 
     function toggleVerseContentVisibility(verseContentFullName, oldVisibility) {
+        // H-4.1 when clicking on the verse content, the visibility is toggled
         let verseNumber = verseContentFullName.split("verse-content-")[1]
         let newVisibility = ""
         if (oldVisibility === "hidden") {
@@ -236,6 +252,7 @@
     // when called, it prints ("make reference {number} {newVisibility}") where {newVisibility} is the opposite of @Param 2
 
     function toggleVerseReferenceVisibility(verseReferenceFullName, oldVisibility) {
+        // H-4.2 when clicking on the verse reference, the visibility is toggled
         let verseNumber = verseReferenceFullName.split("verse-reference-")[1]
         let newVisibility = ""
         if (oldVisibility === "hidden") {
