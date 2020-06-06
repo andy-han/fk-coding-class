@@ -51,7 +51,7 @@
     </div>
 </section>
 <!-- Verses -->
-<section id="verses" class="wrapper style1">
+<section id="verses" class="wrapper" style="background: #f2f2f2;">
     <div class="container">
         <header class="major">
             <h2>Add a Bible Verse</h2>
@@ -90,7 +90,6 @@
             </div>
         </div>
 
-        <!-- C-4.1 -->
         <!-- Verses -->
         <div class="verses">
         </div>
@@ -125,16 +124,23 @@
     var numberOfVerses = 0;
 
     function addVerse() {
-        numberOfVerses = numberOfVerses + 1;
+        numberOfVerses++;
         let verseContentText = $("#verse-ref-form").val()
         let verseReferenceText = $("#verse-content-form").val()
-        $(".verses").append(
-            `<div style="display: flex;">
+        let backgroundStyle = "";
+        if (numberOfVerses % 2 === 0) {
+            backgroundStyle = "even-background";
+        } else {
+            backgroundStyle = "odd-background"
+        }
+        if (verseContentText && verseReferenceText) {
+            $(".verses").append(
+                `<div style="display: flex;">
                 <div class="verses-table">
-                    <div id="verse-content-${numberOfVerses}" class="verses-table-cell first-col cell-background" onclick="toggleVisibility(firstElementChild)">
+                    <div id="verse-content-${numberOfVerses}" class="verses-table-cell first-col ${backgroundStyle}" onclick="toggleVisibility(firstElementChild)">
                         <p id="${numberOfVerses}-content" style="margin: 0">${verseContentText}</p>
                     </div>
-                    <div id="verse-reference-${numberOfVerses}" class="verses-table-cell second-col cell-background" onclick="toggleVisibility(firstElementChild)">
+                    <div id="verse-reference-${numberOfVerses}" class="verses-table-cell second-col ${backgroundStyle}" onclick="toggleVisibility(firstElementChild)">
                         <p id="${numberOfVerses}-reference" style="margin: 0">${verseReferenceText}</p>
                     </div>
                     <div id="icons-${numberOfVerses}" class="verses-table-cell third-col">
@@ -143,16 +149,10 @@
                     </div>
                 </div>
             </div>`
-        );
-        printOddOrEven();
-    }
-
-    function printOddOrEven() {
-        if (numberOfVerses % 2 === 0) {
-            console.log("The number of verses is even")
-        } else {
-            console.log("The number of verses is odd")
+            );
         }
+        $("#verse-ref-form").val("")
+        $("#verse-content-form").val("")
     }
 
     function showOrHideWhenClicked(showButtonFullId, showOrHide) {
