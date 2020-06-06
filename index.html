@@ -51,7 +51,7 @@
     </div>
 </section>
 <!-- Verses -->
-<section id="verses" class="wrapper style1">
+<section id="verses" class="wrapper" style="background: #f2f2f2;">
     <div class="container">
         <header class="major">
             <h2>Add a Bible Verse</h2>
@@ -130,9 +130,7 @@
         <li><a href="about.html">About</a></li>
         <li><a href="#verses">Go Back to Verses</a></li>
     </ul>
-    <span class="copyright">
-					&copy; Copyright. All rights reserved. Design by <a href="http://www.html5webtemplates.co.uk">Responsive Web Templates</a>
-				</span>
+    <span class="copyright">&copy; Copyright. All rights reserved. Design by <a href="http://www.html5webtemplates.co.uk">Responsive Web Templates</a></span>
 </footer>
 </body>
 </html>
@@ -161,25 +159,9 @@
         numberOfVerses = numberOfVerses + 1;
         let verseContentText = $("#verse-ref-form").val()
         let verseReferenceText = $("#verse-content-form").val()
-        $(".verses").append(
-            `<div style="display: flex;">
-                <div class="verses-table">
-                    <!-- H-4.1 when clicking on the verse content, the visibility is toggled -->
-                    <div id="verse-content-${numberOfVerses}" class="verses-table-cell first-col cell-background">
-                        <p id="${numberOfVerses}-content" style="margin: 0">${verseContentText}</p>
-                    </div>
-                    <!-- H-4.2 when clicking on the verse reference, the visibility is toggled -->
-                    <div id="verse-reference-${numberOfVerses}" class="verses-table-cell second-col cell-background">
-                        <p id="${numberOfVerses}-reference" style="margin: 0">${verseReferenceText}</p>
-                    </div>
-                    <div id="icons-${numberOfVerses}" class="verses-table-cell third-col">
-                        <!-- C-4.3 onClick for icons are set up -->
-                        <span id="${numberOfVerses}-show" class="icon fa-eye show" onclick="showVerseContentAndReferenceWhenButtonClicked(id)"></span>
-                        <span id="${numberOfVerses}-hide" class="icon fa-eye-slash hide" onclick="hideVerseContentAndReferenceWhenButtonClicked(id)"></span>
-                    </div>
-                </div>
-            </div>`
-        );
+        // C-4.3 onClick for icons are set up
+        // H-4.1 when clicking on the verse content, the visibility is toggled
+        // H-4.2 when clicking on the verse reference, the visibility is toggled
         printTheNumberOfVerses();
         printOddOrEven();
     }
