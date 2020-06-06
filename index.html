@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <title></title>
+    <title>My Coding </title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta name="description" content=""/>
     <meta name="keywords" content=""/>
@@ -116,9 +116,7 @@
         <li><a href="about.html">About</a></li>
         <li><a href="#verses">Go Back to Verses</a></li>
     </ul>
-    <span class="copyright">
-					&copy; Copyright. All rights reserved. Design by <a href="http://www.html5webtemplates.co.uk">Responsive Web Templates</a>
-				</span>
+    <span class="copyright">&copy; Copyright. All rights reserved. Design by <a href="http://www.html5webtemplates.co.uk">Responsive Web Templates</a></span>
 </footer>
 </body>
 </html>
@@ -127,35 +125,26 @@
     var numberOfVerses = 0;
 
     function addVerse() {
-        // C-4.2 Dynamically add verses html
         numberOfVerses = numberOfVerses + 1;
         let verseContentText = $("#verse-ref-form").val()
         let verseReferenceText = $("#verse-content-form").val()
-         // H-4.1 when clicking on the verse content, the visibility is toggled
-         // H-4.2 when clicking on the verse reference, the visibility is toggled
-         // C-4.3 onClick for icons are set up
         $(".verses").append(
             `<div style="display: flex;">
                 <div class="verses-table">
-                    <div id="verse-content-${numberOfVerses}" class="verses-table-cell first-col cell-background" onclick="toggleVerseContentVisibility(firstElementChild)">
+                    <div id="verse-content-${numberOfVerses}" class="verses-table-cell first-col cell-background" onclick="toggleVisibility(firstElementChild)">
                         <p id="${numberOfVerses}-content" style="margin: 0">${verseContentText}</p>
                     </div>
-                    <div id="verse-reference-${numberOfVerses}" class="verses-table-cell second-col cell-background" onclick="toggleVerseReferenceVisibility(firstElementChild)">
+                    <div id="verse-reference-${numberOfVerses}" class="verses-table-cell second-col cell-background" onclick="toggleVisibility(firstElementChild)">
                         <p id="${numberOfVerses}-reference" style="margin: 0">${verseReferenceText}</p>
                     </div>
                     <div id="icons-${numberOfVerses}" class="verses-table-cell third-col">
-                        <span id="${numberOfVerses}-show" class="icon fa-eye show" onclick="showVerseContentAndReferenceWhenButtonClicked(id)"></span>
-                        <span id="${numberOfVerses}-hide" class="icon fa-eye-slash hide" onclick="hideVerseContentAndReferenceWhenButtonClicked(id)"></span>
+                        <span id="${numberOfVerses}-show" class="icon fa-eye show" onclick="showOrHideWhenClicked(id, 'show')"></span>
+                        <span id="${numberOfVerses}-hide" class="icon fa-eye-slash hide" onclick="showOrHideWhenClicked(id, 'hide')"></span>
                     </div>
                 </div>
             </div>`
         );
-        printTheNumberOfVerses();
         printOddOrEven();
-    }
-
-    function printTheNumberOfVerses() {
-        console.log("The number of verses is: " + numberOfVerses)
     }
 
     function printOddOrEven() {
@@ -166,45 +155,24 @@
         }
     }
 
-    function showVerseContentAndReferenceWhenButtonClicked(showButtonFullId) {
-        let verseNumber = showButtonFullId.split("-show")[0]
-        // C.4-4 change the style instead of just logging
-        // console.log("please show content and reference " + verseNumber)
+    function showOrHideWhenClicked(showButtonFullId, showOrHide) {
+        let verseNumber = showButtonFullId.split(`-${showOrHide}`)[0]
         let contentElement = document.getElementById(`${verseNumber}-content`)
         let referenceElement = document.getElementById(`${verseNumber}-reference`)
-        contentElement.style.visibility = "visible";
-        referenceElement.style.visibility = "visible";
+        if (showOrHide === "show") {
+            contentElement.style.visibility = "visible";
+            referenceElement.style.visibility = "visible";
+        } else if (showOrHide === "hide") {
+            contentElement.style.visibility = "hidden";
+            referenceElement.style.visibility = "hidden";
+        }
     }
 
-
-    function hideVerseContentAndReferenceWhenButtonClicked(hideButtonFullId) {
-        let verseNumber = hideButtonFullId.split("-hide")[0]
-        // C.4-5 change the style instead of just logging
-        // console.log("please hide content and reference " + verseNumber)
-        let contentElement = document.getElementById(`${verseNumber}-content`)
-        let referenceElement = document.getElementById(`${verseNumber}-reference`)
-        contentElement.style.visibility = "hidden";
-        referenceElement.style.visibility = "hidden";
-    }
-
-    function toggleVerseContentVisibility(childElement) {
-        // H-4.1 when clicking on the verse content, the visibility is toggled
+    function toggleVisibility(childElement) {
         if (childElement.style.visibility === "hidden") {
             childElement.style.visibility = "visible"
         } else {
             childElement.style.visibility = "hidden"
         }
-        // console.log("make content " + verseNumber + " " + newVisibility)
     }
-
-    function toggleVerseReferenceVisibility(childElement) {
-        // H-4.2 when clicking on the verse reference, the visibility is toggled
-        if (childElement.style.visibility === "hidden") {
-            childElement.style.visibility = "visible"
-        } else {
-            childElement.style.visibility = "hidden"
-        }
-        // console.log("make reference " + verseNumber + " " + newVisibility)
-    }
-
 </script>
