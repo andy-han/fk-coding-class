@@ -1,6 +1,6 @@
 .inspirational-verse {
     text-align: center;
-    background-color: #DC3F45;
+    background-color: #FF8889;
     padding-top: 2rem;
     padding-bottom: 2rem;
     margin-right: 2rem;
@@ -10,8 +10,7 @@
 }
 
 /*H.2-EC Create the submission form, verse columns and headers*/
-/* Table columns
-================================== */
+/* Table columns */
 .col-header {
     text-align: center
 }
