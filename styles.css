@@ -42,3 +42,22 @@
     flex-direction: column;
     justify-content: center;
 }
+
+.Rtable {
+    display: flex;
+    flex: 1 1 100%;
+    margin: 0 0 1em 0;
+    padding: 0;
+}
+
+.Rtable-cell {
+    box-sizing: border-box;
+    flex-grow: 1;
+    padding: 1em 1em;
+    overflow: hidden;
+    list-style: none;
+}
+
+.cell-background {
+    background-color: aliceblue;
+}
