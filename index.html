@@ -182,7 +182,7 @@
     // when called, it prints ("verse and reference {number} should be shown")
 
     function showVerseContentAndReferenceWhenButtonClicked(showButtonFullId) {
-        let verseNumber = showButtonFullId.split("-show")[0]
+        let verseNumber = showButtonFullId.split("show-")[1]
         // C.4-4 change the style instead of just logging
         // console.log("please show content and reference " + verseNumber)
         let contentElement = document.getElementById(`${verseNumber}-content`)
@@ -198,7 +198,7 @@
     // when called, it prints ("verse and reference {number} should be hidden")
 
     function hideVerseContentAndReferenceWhenButtonClicked(hideButtonFullId) {
-        let verseNumber = hideButtonFullId.split("-hide")[0]
+        let verseNumber = hideButtonFullId.split("hide-")[1]
         // C.4-5 change the style instead of just logging
         // console.log("please hide content and reference " + verseNumber)
         let contentElement = document.getElementById(`${verseNumber}-content`)
@@ -227,7 +227,7 @@
 
     // H.3-4: write a function called `toggleVerseReferenceVisibility` that does the following
     // it takes in 2 string parameters the first parameter is the full name of the verse reference, the second is its visibility
-    // @Param 1 is in the format "verse-content-{number}" where {number} is the verse number
+    // @Param 1 is in the format "verse-reference-{number}" where {number} is the verse number
     // @Param 2 is either "hidden" or "visible"
     // when called, it prints ("make reference {number} {newVisibility}") where {newVisibility} is the opposite of @Param 2
 
