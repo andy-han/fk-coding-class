@@ -1,0 +1,22 @@
+Section 1: HTML and CSS
+1. Create a h2 heading that says "Title"
+<h2>Title</h2>
+
+2. Create a h3 heading that says "Smaller Title". This heading should be colored: "red"
+<h3 "style = color: red;">Smaller Title</h3>
+
+Section 3: Javascript Variables
+3. Create 3 variables that store your name (string), your age (number), if you are a student (boolean)
+var name = "Andy";
+var age = 27;
+var i_am_a_student = true;
+
+4. console.log one of your variables
+console.log(name);
+
+5. Create a new variable called "new_age" that is your age + 1
+var new_age = age + 1;
+
+6. 
+
+Section 4: Javascript Functions
